@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Live GPS Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #0f172a;
+      color: white;
+      padding: 20px;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background: #22c55e;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+    }
+    #map {
+      width: 100%;
+      height: 400px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>📍 Live Location</h2>
+<button onclick="start()">Mulai Tracking</button>
+
+<p id="info"></p>
+<div id="map"></div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+let map, marker;
+
+function start() {
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(update, error, {
+      enableHighAccuracy: true
+    });
+    document.getElementById("info").innerText = "Mengambil lokasi...";
+  } else {
+    alert("GPS tidak didukung");
+  }
+}
+
+function update(pos) {
+  let lat = pos.coords.latitude;
+  let lng = pos.coords.longitude;
+
+  document.getElementById("info").innerHTML =
+    "Lat: " + lat + " | Lng: " + lng;
+
+  if (!map) {
+    map = L.map('map').setView([lat, lng], 16);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    marker = L.marker([lat, lng]).addTo(map);
+  } else {
+    marker.setLatLng([lat, lng]);
+    map.setView([lat, lng]);
+  }
+}
+
+function error(err) {
+  alert("Error: " + err.message);
+}
+</script>
+
+</body>
+</html>
