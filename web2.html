@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLASS VIII⁵</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.3s;
+}
+
+body {
+    background: #0f2027;
+    color: white;
+}
+
+/* LIGHT MODE */
+body.light {
+    background: linear-gradient(135deg, #f6d365, #fda085);
+    color: #333;
+}
+
+/* HERO */
+.hero {
+    height: 65vh;
+    background: url('https://i.ibb.co.com/C3ndH2RQ/IMG-20260126-WA0215.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 15px;
+    margin: 15px;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+}
+
+/* TITLE */
+.overlay {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+}
+
+.overlay h1 {
+    font-size: 46px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.6);
+    animation: floatText 3s ease-in-out infinite;
+}
+
+@keyframes floatText {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
+
+/* NAV */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+nav button {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background: rgba(255,255,255,0.15);
+    color: inherit;
+}
+
+nav button:hover {
+    transform: scale(1.1);
+    background: white;
+    color: black;
+}
+
+/* TOGGLE */
+.toggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: white;
+    color: black;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+/* CONTENT */
+.content {
+    display: none;
+    padding: 20px;
+}
+
+.active {
+    display: block;
+}
+
+/* CARD */
+.card {
+    background: rgba(255,255,255,0.12);
+    padding: 18px;
+    margin: 10px 0;
+    border-radius: 15px;
+}
+
+/* MUSIC */
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 15px;
+    border-radius: 20px;
+    border: none;
+    background: orange;
+    color: white;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.music-box {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    display: none;
+    z-index: 9999;
+}
+
+/* INFO BOX */
+.info-box {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 12px 15px;
+    border-radius: 12px;
+    font-size: 12px;
+    z-index: 9999;
+    backdrop-filter: blur(8px);
+    max-width: 220px;
+}
+
+body.light .info-box {
+    background: rgba(255,255,255,0.7);
+    color: #333;
+}
+</style>
+</head>
+
+<body>
+
+<div class="toggle" onclick="toggleMode()">🌙 / ☀️</div>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="overlay">
+        <h1>CLASS VIII⁵</h1>
+        <p>KELAZZNYA ELITE CEES</p>
+    </div>
+</div>
+
+<!-- NAV -->
+<nav>
+    <button onclick="showPage('siswa')">Siswa</button>
+    <button onclick="showPage('jadwal')">Jadwal</button>
+    <button onclick="showPage('piketkelas')">Piket Kelas</button>
+    <button onclick="showPage('piketumum')">Piket Umum</button>
+    <button onclick="showPage('chat')">Chat</button>
+</nav>
+
+<!-- SISWA -->
+<div id="siswa" class="content active">
+    <h2>👨‍🎓 Daftar Siswa</h2>
+    <div class="card">Andi</div>
+    <div class="card">Budi</div>
+    <div class="card">Citra</div>
+    <div class="card">Dina</div>
+</div>
+
+<!-- JADWAL -->
+<div id="jadwal" class="content">
+    <h2>📅 JADWAL PELAJARAN</h2>
+
+    <div class="card"><h3>SENIN</h3><p>IPA</p><p>IPA</p><p>B. INDONESIA</p><p>B. INDONESIA</p><p>IPS</p><p>IPS</p></div>
+    <div class="card"><h3>SELASA</h3><p>B. INGGRIS</p><p>B. INGGRIS</p><p>PPKN</p><p>SBK</p><p>TIK</p><p>TIK</p><p>PJOK</p><p>BK</p></div>
+    <div class="card"><h3>RABU</h3><p>AGAMA</p><p>AGAMA</p><p>B. INDONESIA</p><p>B. INDONESIA</p><p>SBK</p><p>SBK</p><p>IPA</p><p>IPA</p></div>
+    <div class="card"><h3>KAMIS</h3><p>MATEMATIKA</p><p>MATEMATIKA</p><p>PJOK</p><p>PJOK</p><p>B. INGGRIS</p><p>B. INGGRIS</p><p>TIK</p><p>IPA</p></div>
+    <div class="card"><h3>JUM'AT</h3><p>IPS</p><p>MATEMATIKA</p><p>AGAMA</p></div>
+    <div class="card"><h3>SABTU</h3><p>MATEMATIKA</p><p>MATEMATIKA</p><p>B. INDONESIA</p><p>B. INDONESIA</p><p>B. KOMERING</p><p>B. KOMERING</p><p>PPKN</p><p>PPKN</p></div>
+</div>
+
+<!-- PIKET KELAS -->
+<div id="piketkelas" class="content">
+    <h2>🏫 Piket Kelas</h2>
+    <div class="card">Andi & Budi</div>
+    <div class="card">Citra & Dina</div>
+</div>
+
+<!-- PIKET UMUM -->
+<div id="piketumum" class="content">
+    <h2>🧹 Piket Umum</h2>
+    <div class="card">Andi & Citra</div>
+    <div class="card">Budi & Dina</div>
+</div>
+
+<!-- CHAT -->
+<div id="chat" class="content">
+    <h2>💬 Chat Kelas</h2>
+    <div class="card">
+        <div id="chatBox"></div>
+        <input id="chatInput" style="width:70%;padding:10px;border-radius:10px;">
+        <button onclick="sendMessage()" style="padding:10px;background:orange;color:white;border-radius:10px;">Kirim</button>
+    </div>
+</div>
+
+<!-- MUSIC -->
+<div class="music-box" id="musicBox">
+    <iframe id="musicFrame"
+        src="https://vocaroo.com/embed/15AEXA2CPSQ3"
+        width="280"
+        height="60"
+        frameborder="0"></iframe>
+</div>
+
+<button class="music-btn" onclick="toggleMusic()">🎵 Music</button>
+
+<!-- INFO BOX -->
+<div class="info-box">
+    <b>INFORMASI !</b><br>
+    WEBSITE INI MASIH TAHAP PENGERJAAN, BELUM 100% JADI
+</div>
+
+<script>
+
+function showPage(id){
+    document.querySelectorAll(".content").forEach(e=>e.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+function toggleMode(){
+    document.body.classList.toggle("light");
+}
+
+function sendMessage(){
+    let input = document.getElementById("chatInput");
+    let box = document.getElementById("chatBox");
+
+    if(input.value){
+        let p = document.createElement("p");
+        p.textContent = "Siswa: " + input.value;
+        box.appendChild(p);
+        input.value="";
+    }
+}
+
+function toggleMusic(){
+    let box = document.getElementById("musicBox");
+    box.style.display = box.style.display==="block"?"none":"block";
+}
+
+/* MUSIC LOOP */
+let musicFrame = document.getElementById("musicFrame");
+function restartMusic(){
+    let src = musicFrame.src;
+    musicFrame.src = "";
+    setTimeout(()=>{ musicFrame.src = src; }, 500);
+}
+setInterval(restartMusic, 60000);
+
+</script>
+
+</body>
+</html>
